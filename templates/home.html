@@ -11,12 +11,9 @@
 }
 
 .jumbotron {
-	background-color:#404040;
-	color: #000;
 	{% if featured_image.make_image_background %} 
 	background-image: url("{{ featured_image.image.url }}");
 	background-repeat: no-repeat;
-	background-color: #fff;
 	background-size: cover;
 	background-position-y: -110px;
 	{% endif %}
