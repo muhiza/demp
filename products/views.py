@@ -74,26 +74,6 @@ from carts.serializers import CartItemSerializer, CheckoutSerializer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # API CBVS
 
 
