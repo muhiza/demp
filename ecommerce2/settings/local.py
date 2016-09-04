@@ -1,3 +1,12 @@
+import os
+from django.conf import settings
+
+
+DEBUG = False
+TEMPLATE_DEBUG = True
+
+DATABASES = settings.DATABASES
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
