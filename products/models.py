@@ -117,13 +117,14 @@ def document_upload_to(instance, filename):
 	slug = slugify(title)
 	basename, file_extension = filename.split(".")
 	new_filename = "%s-%s.%s" %(slug, instance.id, file_extension)
-	return "document/%s/%s" %(slug, new_filename)
+	return "documents/%s/%s" %(slug, new_filename)
 
 
 
 class ProductImage(models.Model):
 	product = models.ForeignKey(Product)
 	image = models.FileField(upload_to=image_upload_to)
+	documents = models.FileField(upload_to=image_upload_to, default='')
 	doc = models.FileField(upload_to=document_upload_to, default='doc')
 
 

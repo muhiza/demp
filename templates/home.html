@@ -4,10 +4,16 @@
 
 {% block head_title %}Welcome | {{ block.super }}{% endblock %}
 <style>
+
+
+
+
+
 {% block style %}
 
 .navbar-static-top {
-	margin-bottom: 0px !important;
+	margin-bottom: 3000px !important;
+  height: 3000px;
 }
 
 .jumbotron {
@@ -16,8 +22,122 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: -110px;
+
 	{% endif %}
 }
+
+
+/* GLOBAL STYLES */
+/* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+
+
+    .carousel-control {
+      height: 0px;
+      margin-top: 50;
+      margin-bottom: -60px;
+
+      font-size: 120px;
+      margin-right: -90px;
+      margin-left: -90px;
+
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 350px;
+    }
+
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 10px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 850px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 100;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      font: 50%;
+    }
+    .carousel-caption .btn {
+      margin-top: 5px;
+    }
+
+ 
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+
+    .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+
+    /* Featurettes
+    ------------------------- */
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+    }
+
 
 {% endblock %}
 </style>
@@ -100,19 +220,59 @@ $(".item-qty").change(function(){
 {% block jumbotron %}
 
 	{% if featured_image %}
+
+
+
+
 		<div class="jumbotron" >
 		 <div class="container">
 			<div class="row">
+
+
+            <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><b>{{ featured_image.product.title }}</b></h1>
+        <p>{{ featured_image.product.description }}</p>
+        <p>
+        <a class="btn btn-lg btn-primary" href="{{ featured_image.product.get_absolute_url }}" role="button">More Details </a>
+        </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><b>{{ featured_image.product.title }}</b></h1>
+        <p>{{ featured_image.product.description }}</p>
+        <p>
+        <a class="btn btn-lg btn-primary" href="{{ featured_image.product.get_absolute_url }}" role="button">More Details </a>
+        </p>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+        </div>
+        </div>
+
+
+
+
+
 				<div class='col-sm-12 text-center {% if featured_image.text_right %} pull-right {% endif %}'>
-				<h1 style="color:#fff;">{{ featured_image.product.title }}</h1>
-				<p style="color:#fff;">{{ featured_image.product.description }}</p>
-				<p>
-				<a class="btn btn-lg btn-primary" href="{{ featured_image.product.get_absolute_url }}" role="button">More Details </a>
-				</p>
+				
+
 				</div>
-				{% if not featured_image.make_image_background %} 
+				{% if not featured_image.make_images_background %} 
 				<div class='col-sm-6' >
-					<img src="{{ featured_image.image.url }}" class='img-responsive' />
+					<img src="{{ featured_images.images.url }}" class='img-responsive' />
 		 		</div>
 		 		{% endif %}
 				</div>
@@ -156,7 +316,7 @@ $(".item-qty").change(function(){
 
 <div class='row'>
 <div class="col-md-9">
-<h3>New curriculum books allowed by REB </h3>
+<h3><b> New curriculum books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -197,7 +357,7 @@ $(".item-qty").change(function(){
 
 <div class='row'>
 <div class="col-md-12">
-<h3>Universities books allowed by REB </h3>
+<h3><b> Universities books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -226,7 +386,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3>Secondary school books allowed by REB </h3>
+<h3><b> Secondary school books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -251,11 +411,8 @@ $(".item-qty").change(function(){
 
 
 
-
-
-
 <div class='row'>
-<h3>Primary books allowed by REB </h3>
+<h3><b>Primary books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -282,7 +439,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3>Kindergarten books allowed by REB </h3>
+<h3><b>Kindergarten books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -308,10 +465,8 @@ $(".item-qty").change(function(){
 
 
 
-
-
 <div class='row'>
-<h3>Univercities books allowed by REB </h3>
+<h3><b>Univercities books allowed by REB </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -336,11 +491,49 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3>Featured Books</h3>
+<h3><b>Featured Books</b></h3>
 {% include "products/products.html" with object_list=products2 %}
 
 </div>
 
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">THE LADDER TO SUCCESS!</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+
+      <div class="col-md-6">
+<div>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTZzrKdmVs6DMpxAq3MuyBNznWFgjYKL5fQv92AhSY6Y_HwdP1mQ" alt="The card middle" class="img-responsive img-rounded" id="card-image" class="img-responsive"> 
+
+
+
+</div>
+
+
+      </div>
+
+      <div class="col-md-6">
+        <p>The article struck a chord, and he went on to write The Shallows, which explored this phenomenon in the detail it deserves and became a New York Times bestseller and Pulitzer finalist. Referring to the environmental book by Rachel Carson that first alerted the world to the dangers of pesticides, bringing societal upheaval and the creation of the United States’ environmental protection agency, Slate called the book a “Silent Spring” for the mind. 
+</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- 
  {% if request.user.is_authenticated %}

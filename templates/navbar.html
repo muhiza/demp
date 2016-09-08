@@ -3,6 +3,17 @@
 {% load staticfiles %}
    <!-- Static navbar -->
 
+   <style type="text/css">
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+   </style>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -12,13 +23,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home' %}">S.E.M</a>
+          <b><strong><a class="navbar-brand" href="{% url 'home' %}">S.E.M</a></strong></b>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'home' %}">Popular Books</a></li>
             <li><a href="{% url 'home' %}">New Books</a></li>
             <li><a href="{% url 'home' %}">Publishers</a></li>
             <li><a href='{% url "categories" %}'>Categories</a></li>
@@ -54,6 +64,8 @@
 
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'orders' %}">Orders</a></li> 
+
+          <li><a href="{% url 'orders' %}">{{ user }}</a></li> 
             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'registration_register' %}">Register</a></li>
@@ -94,7 +106,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-
+    <br><br>
+    
 
 

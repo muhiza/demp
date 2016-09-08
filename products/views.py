@@ -16,6 +16,8 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse as api_reverse
 from rest_framework.views import APIView
 
+
+
 # Create your views here.
 from .filters import ProductFilter
 from .forms import VariationInventoryFormSet, ProductFilterForm
@@ -28,7 +30,6 @@ from .serializers import (
 		 ProductDetailSerializer, 
 		 ProductDetailUpdateSerializer
 		)
-
 
 
 

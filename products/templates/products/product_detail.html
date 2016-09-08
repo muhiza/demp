@@ -33,11 +33,6 @@ $(function(){
     });
 });
 
-
-
-
-
-
 function setPrice(){
 	var price = $(".variation_select option:selected").attr("data-price")
 
@@ -100,8 +95,19 @@ $("#submit-btn").click(function(event){
 
 {% if object.get_image_url %}
 <div>
-<a href="{{ object.get_image_url }}" target="_blank"><img id='img' class='img-responsive' src='{{ object.get_image_url }}' /> </a> <br>
+<a href="http://www.tutorialspoint.com/images/pdf.jpg" target="_blank"><img id='img' class='img-responsive' src='http://www.tutorialspoint.com/images/pdf.jpg' /> </a> <br>
 </div>
+
+
+
+<div>
+<a href="{{ object.get_pdf_doc_url }}" target="_blank"><img id='img' class='img-responsive'
+
+ src='{{ documents.pdf_doc.name }}' /> </a> <br>
+</div>
+
+
+
 {% endif %}
 <h3>Book Descriptions </h3> <hr>
 <p>
@@ -110,8 +116,17 @@ $("#submit-btn").click(function(event){
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Preview</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Donate</button>
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"> <a href="http://192.168.1.87:8008/media/documents/2016/08/30/sci.pdf" src='{{ object.get_image_url }}' target="blank">Download </a></button>
 
+
+{% if request.user.is_authenticated %}
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"> <a href='{{ object.get_image_url }}' src='{{ object.get_image_url }}' target="_blank">Download </a></button>
+
+{% else %}
+
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
+
+{% endif %}
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -182,8 +197,6 @@ We usually assume that whatever we choose to do is a personal choice, but in rea
   <li><a href="#">(50k) Likes</a></li>
 </ul>
 </div>
-
-
 
 <!-- Product Sidebar -->
 <div class='col-sm-4'>
