@@ -91,11 +91,11 @@ $("#submit-btn").click(function(event){
 <div class='row'>
 
 <div class='col-sm-8'>
-<h2>{{ object.title }}</h2>
+<h2><b>{{ object.title }}</b></h2>
 
 {% if object.get_image_url %}
 <div>
-<a href="http://www.tutorialspoint.com/images/pdf.jpg" target="_blank"><img id='img' class='img-responsive' src='http://www.tutorialspoint.com/images/pdf.jpg' /> </a> <br>
+<a href="#"><img id='img' class='img-responsive' src='http://www.tutorialspoint.com/images/pdf.jpg' /> </a> <br>
 </div>
 
 
@@ -109,7 +109,7 @@ $("#submit-btn").click(function(event){
 
 
 {% endif %}
-<h3>Book Descriptions </h3> <hr>
+<h3><b>Book Descriptions </b></h3><hr>
 <p>
 {{ object.description }}
 </p>
@@ -176,7 +176,7 @@ We usually assume that whatever we choose to do is a personal choice, but in rea
     </div>
   </div>
 
-<h3>Customer Reviews </h3>
+<h3><b>Customer Reviews </b></h3>
 <div class="rating-select">
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
@@ -235,9 +235,8 @@ We usually assume that whatever we choose to do is a personal choice, but in rea
 <br/>
 <input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-default' />
 </form>
-
 <hr/>
-<p>
+<p class="lead"><b>
 Share<br/>
 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 <i class="fa fa-facebook-square fa-3x"></i></a>
@@ -252,9 +251,9 @@ Share<br/>
 
 <a href="#">
 <i class="fa fa-pinterest-square fa-3x"></i></a>
-</p>
+</b></p>
 <hr/>
-<h4>Related Books</h4> <hr>
+<h4><b>Related Books</b></h4> <hr>
 
 	<div class='row'>
 	{% for product in related %}

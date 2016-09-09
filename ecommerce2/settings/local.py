@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import datetime
 import os
 
+ADMIN_SITE_HEADER = "WELCOME TO S.E.M ADMINISTRATION SIDE"
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 print (BASE_DIR)

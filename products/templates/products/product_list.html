@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+<br><br>
 <div class='col-sm-2'>
 <form method="GET" action="{% url 'products' %}">
 {{ filter_form|crispy }}
@@ -16,11 +16,11 @@
 
 <div class='col-sm-10'>
 
-<h1>More books you may like  <small><a href='{% url "categories" %}'>Categories</a></small></h1>
+<h2><b>More books you may like  </b><small><a href='{% url "categories" %}'><b>Categories</b></a></small></h2> <br>
 
 {% if object_list.count == 0 %}
 
-Nothing found
+<b>Nothing found </b>
 
 {% else %}
 {% include "products/products.html" with object_list=object_list %}

@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from . import settings
 
 from carts.views import (
         CartAPIView,
@@ -32,6 +33,7 @@ from products.views import (
         ProductRetrieveAPIView,
 
     )
+admin.site.site_header = settings.ADMIN_SITE_HEADER
 
 urlpatterns = [
     # Examples:
@@ -52,6 +54,7 @@ urlpatterns = [
     url(r'^checkout/address/$', AddressSelectFormView.as_view(), name='order_address'),
     url(r'^checkout/address/add/$', UserAddressCreateView.as_view(), name='user_address_create'),
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
+
 
 ]
 
