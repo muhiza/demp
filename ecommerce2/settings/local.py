@@ -32,8 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['asidsem.herokuapp.com']
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'yourgmail@gmail.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_HOST_USER = 'frnkmuhz@gmail.com'
+EMAIL_HOST_PASSWORD = 'heroku123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
