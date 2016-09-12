@@ -29,7 +29,7 @@ SECRET_KEY = 'csqwlmc8s55o($rt6ozh7u+ui9zb-et00w$d90j8$^!nvj41_r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['asidsem.herokuapp.com']
+ALLOWED_HOSTS = ['wwww.asidsem.herokuapp.com']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'frnkmuhz@gmail.com'
@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'newsletter',
     'orders',
     'products',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,7 +131,10 @@ DATABASES = {
 
 
 
-
+AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=94608000',
+}
 
 
 
@@ -229,11 +233,6 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-
-
-
-
 
 
 
