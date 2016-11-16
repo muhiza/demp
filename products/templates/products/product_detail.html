@@ -1,7 +1,126 @@
 {% extends "base.html" %}
 
+<script type="text/javascript"></script>>
+<style type="text/css">
+
+
+
+body{
+    overflow:hidden;
+}
+
+#flipbook{
+    width:400px;
+    height:300px;
+}
+
+#flipbook .page{
+    width:400px;
+    height:300px;
+    background-color:white;
+    line-height:300px;
+    font-size:20px;
+    text-align:center;
+}
+
+#flipbook .page-wrapper{
+    -webkit-perspective:2000px;
+    -moz-perspective:2000px;
+    -ms-perspective:2000px;
+    -o-perspective:2000px;
+    perspective:2000px;
+}
+
+#flipbook .hard{
+    background:#ccc !important;
+    color:#333;
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+    font-weight:bold;
+}
+
+#flipbook .odd{
+    background:-webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+    background-image:-webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+    
+}
+
+#flipbook .even{
+    background:-webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+    background-image:-webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-moz-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-ms-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-o-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:linear-gradient(left, #fff 95%, #dadada 100%);
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+}
+
+
+
+
+
+
+
+  .modal.modal-fullscreen .modal-content {
+    background: rgba(0, 0, 0, .5);
+  }
+  .modal.modal-fullscreen .modal-header {
+    border: 0;
+    color: #fff;
+  }
+  .modal.modal-fullscreen .modal-footer {
+    border-color: rgba(0, 0, 0, .5);
+  }
+
+  h1,h2,h3,h4,h5,h6{
+  font-family: Latex, Georgia, serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  line-height: inherit;
+}
+h1.title{
+  text-transform: capitalize;
+  font-variant: small-caps;
+  font-size: 35px;
+  line-height: 40px;
+  text-align: center;
+  margin: 1rem 0 0.5rem 0.5rem;
+}
+
+</style>
+
+
+
+
 <script>
 {% block jquery %}
+
+$("#flipbook").turn({
+    width: 400,
+    height: 300,
+    autoCenter: true
+});
+
+
+
 
 
 
@@ -78,27 +197,16 @@ $("#submit-btn").click(function(event){
 	// $("#add-form").submit()
 
 })
-
-
-
 {% endblock %}
 </script>
-
-
 {% block content %}
-
-
+<br><br>
 <div class='row'>
-
-<div class='col-sm-8'>
-<h2><b>{{ object.title }}</b></h2>
-
+<div class='col-sm-4'>
 {% if object.get_image_url %}
 <div>
-<a href="#"><img id='img' class='img-responsive' src='http://www.tutorialspoint.com/images/pdf.jpg' /> </a> <br>
+<a href='{{ product.get_absolute_url }}'><img id='img' style="height:400px; width: 300px; padding-top: 30px;" class='img-responsive' src='{{ product.get_image_url }}' /> </a> <br>
 </div>
-
-
 
 <div>
 <a href="{{ object.get_pdf_doc_url }}" target="_blank"><img id='img' class='img-responsive'
@@ -109,81 +217,97 @@ $("#submit-btn").click(function(event){
 
 
 {% endif %}
-<h3><b>Book Descriptions </b></h3><hr>
-<p>
-{{ object.description }}
-</p>
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Preview</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">Donate</button>
-
-
 
 {% if request.user.is_authenticated %}
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"> <a href='{{ object.get_image_url }}' src='{{ object.get_image_url }}' target="_blank">Download </a></button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"><a href="{{ object.get_documents_url }}" src='{{ object.get_documents_url }}' target="_blank">Download </a></button>
 
 {% else %}
 
+<!--
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
+
+
+-->
 
 {% endif %}
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
 
-    <
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title text-center">The Shallows Summary
-</h3>
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> 
+  Read Sample
+</button><br><br>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> 
+  Voice read
+</button> <br><br>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="mod" style="width:100%; 
+height:100%;">
+  <div class="modal-dialog" style="width:100%; 
+height:100%;">
+    <div class="modal-content" style="width:100%; 
+height:100%;">
+      <div class="modal-header" style="background-color: #7D848E; color:">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height: 3px; font-size:60px; color:#006595; background-color: #FFFFFF;">&times;</button>
+        <h4 class="modal-title" id="myModalLabel" style="font-family: Latex, Georgia, Serif; font-size: 35px; font-variant: small-caps; font-weight:normal; line-height: 40px; text-align: center; text-transform: capitalize; word-spacing: 0px; color:#FFFFFF;">{{ object.title }}</h4> <br>
+      </div>
+      <div class="modal-body">
+      <div class="container">
+      <div class="row" style="font-family: Latex, Georgia, Serif; font-size: 26px; font-weight:normal; line-height: 31px; text-align: justify; word-spacing: 0px;">
+      <div class="col-md-6">
+      <h5>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
+
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. When Django finds a regular expression match. <br><br>
+        </h5>
         </div>
-        <div class="modal-body">
-          <p>In 2008, Nicholas Carr’s article in Atlantic Monthly brought to the surface a creeping feeling that many people have begun to voice – have our brains been acting differently as a result of the time we’ve been spending on the internet? Carr contended that our thoughts, mental processes, and even physical brains are actually being restructured.
+        <div class="col-md-6">
+        <h5>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit.When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
 
- <br><br>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit.When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
 
-The article struck a chord, and he went on to write The Shallows, which explored this phenomenon in the detail it deserves and became a New York Times bestseller and Pulitzer finalist. Referring to the environmental book by Rachel Carson that first alerted the world to the dangers of pesticides, bringing societal upheaval and the creation of the United States’ environmental protection agency, Slate called the book a “Silent Spring” for the mind.
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit.When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit. <br><br>
 
-<br><br>
-<h2> Prologue </h2> <br>
-
-In his 1964 book Understanding Media: The Extensions of Man, Marshall McLuhan prophesied that society would suffer from a loss of ability to engage in “linear thinking” because of the electric media (radio, telephones, and TV) that were proliferating at that time. What he did not foresee was the advent of the internet, which exponentially expanded the effect he predicted.
-<br><br>
-
-<h2> Chapter 1: Hal and Me </h2> <br>
-
-In the movie 2001: A Space Odyssey, the supercomputer HAL attempts to kill the human astronauts he has been working with. In response, an astronaut begins unplugging HAL, prompting the computer to lament, “My mind is going!”
-<br><br>
-
-<h2> Chapter 2: The Vital Paths </h2> <br>
-
-Even before the internet came along, there have been examples of methodology shaping the mind. Due to his health complications, writer Frederich Nietzshe would get severe headaches and nausea as a result of trying to sustain focus on his writing for long periods of time. To cope, he replaced pen and paper with a typewriter. The typewriter alleviated the strain, allowing him to write again, but the keyboard changed his writing style. His papers had become tighter and more “telegraphic.”
-
-<h2> Chapter 3: Tools of the Mind </h2> <br>
-
-We usually assume that whatever we choose to do is a personal choice, but in reality, it is often the tools we use that direct our thoughts and behavior. Consider, for example, the clock. Life without clocks is difficult to imagine, but for thousands of years most societies had no need to use the precise time of day to direct their activities. Standardization of time only began to spread after a decree that monks pray at specific times each day.
-</p>
+        When Django finds a regular expression match, Django calls the specified view function, with an HttpRequest object as the first argument and any “captured” values from the regular expression as other arguments. If the regex uses simple captures, values are passed as positional arguments; if it uses named captures, values are passed as keyword arguments. We’ll give an example of this in a bit.When Django finds a regular expression match. <br><br>
+        </h5>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">For more</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Add to Cart</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+        </div>
         </div>
       </div>
-      
     </div>
   </div>
+</div>
 
-<h3><b>Customer Reviews </b></h3>
+<h3><b>Readers Reviews </b></h3>
 <div class="rating-select">
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
     <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-</div> <br><br>
+</div> 
+
+<script type="text/javascript">
+  $(function() {
+    //single book
+    $('#mybook').booklet();
+
+    //multiple books with ID's
+    $('#mybook1, #mybook2').booklet();
+
+    //multiple books with a class
+    $('.mycustombooks').booklet();
+});
+    
+</script>
+<br><br>
 
 <!-- Centered Tabs -->
 
@@ -196,10 +320,100 @@ We usually assume that whatever we choose to do is a personal choice, but in rea
   <li><a href="#">(13k) Comments</a></li>
   <li><a href="#">(50k) Likes</a></li>
 </ul>
+<hr>
+<br>
+
+
+
+<h4><b>Related Books</b></h4> <hr>
+
+  <div class='row'>
+  {% for product in related %}
+
+    <div class='col-xs-6'>
+      {% include "products/product_thumbnail.html" with product=product price="True" %}
+    </div>
+    {% cycle '' '</div><div class="row">' %}
+  {% endfor %}
+
+    </div>
 </div>
 
 <!-- Product Sidebar -->
-<div class='col-sm-4'>
+<div class='col-sm-7'>
+<h2 style="font-size: 36px; font-weight: 300px; line-height: 43px; transform: none;">{{ object.title }}</h2>
+<p style="font-size: 15px; font-weight: normal; line-height: 29px; text-align: justify;
+    text-justify: inter-word;">
+{{ object.description }}
+</p> <hr>
+
+    <!-- Nav tabs --><div class="card">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publication Details</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Format</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Author</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Apps </a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <style type="text/css">
+      
+      .nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding: 30px; height: 300px;}
+
+.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 40px; }
+body{ background-image: url();}
+    </style>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+        <p><b>Publisher :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Imprint :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Publication Date :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Available In :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Kigali Public Library </span></p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+        <p> Author {{ user }} </p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+        <div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div role="tabpanel" class="tab-pane" id="settings">  
+        <div class="row">
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/apple.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/android.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/amazon.png" class="img-responsive" alt="android app"></a>
+          </div>
+        </div><br><br><br>
+        <div class="row">
+          <div class="col-md-12">
+          <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive">
+          </div>
+        </div>
+        </div>
+    </div>
+    </div><br><br>
+
 
 <form id='add-form' method='GET' action="{% url 'cart' %}">
 <p id='jquery-message' class='lead'>
@@ -233,10 +447,27 @@ We usually assume that whatever we choose to do is a personal choice, but in rea
 	<br/>
 	<input class='form-control' type='number' name='qty' value='1' />
 <br/>
-<input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-default' />
+<input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-success' />
 </form>
 <hr/>
-<p class="lead"><b>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><b>
 Share<br/>
 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
 <i class="fa fa-facebook-square fa-3x"></i></a>
@@ -244,37 +475,70 @@ Share<br/>
 <a href="#">
 <i class="fa fa-twitter-square fa-3x"></i></a>
 
-
 <a href="#">
 <i class="fa fa-google-plus-square fa-3x"></i></a>
-
 
 <a href="#">
 <i class="fa fa-pinterest-square fa-3x"></i></a>
 </b></p>
 <hr/>
-<h4><b>Related Books</b></h4> <hr>
-
-	<div class='row'>
-	{% for product in related %}
-
-		<div class='col-xs-6'>
-			{% include "products/product_thumbnail.html" with product=product price="True" %}
-		</div>
-		{% cycle '' '</div><div class="row">' %}
-	{% endfor %}
-
-		</div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//s-e-m.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by .</a></noscript><br><br><br><br><br><br>
+
+<img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive" style="height:400px;">
 </div>
+
+
+
+
+        <div class="row">
+          <div class="col-md-12">
+          
+          </div>
+        </div>
+
+
 <!-- End Product Sidebar -->
-
-
-
-
 </div>
-
-
-
 {% endblock %}

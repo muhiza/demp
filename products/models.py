@@ -50,6 +50,12 @@ class Product(models.Model):
 			return img.image.url
 		return img #None
 
+	def get_documents_url(self):
+		doc = self.productimage_set.first()
+		if doc:
+			return doc.documents.url
+		return doc #None
+
 
 
 
@@ -118,6 +124,11 @@ def document_upload_to(instance, filename):
 	basename, file_extension = filename.split(".")
 	new_filename = "%s-%s.%s" %(slug, instance.id, file_extension)
 	return "documents/%s/%s" %(slug, new_filename)
+
+
+	def get_absolute_url(self):
+		return reverse("product_detail", kwargs={"pk": self.pk})
+
 
 
 

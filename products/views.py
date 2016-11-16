@@ -801,7 +801,7 @@ class CartView(SingleObjectMixin, View):
 				raise Http404
 			cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item_instance)
 			if created:
-				return redirect("products/product_thumbnail.html")
+				return redirect("products/products.html")
 				flash_message = "Successfully added to the cart"
 				item_added = True
 			if delete_item:

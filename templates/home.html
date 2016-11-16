@@ -30,12 +30,6 @@
 /* GLOBAL STYLES */
 /* Padding below the footer and lighter body text */
 
-    body {
-      padding-bottom: 40px;
-      color: #5a5a5a;
-    }
-
-
 
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
@@ -87,17 +81,7 @@
       padding: 0 20px;
       margin-top: 200px;
     }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 100;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      font: 50%;
-    }
-    .carousel-caption .btn {
-      margin-top: 5px;
-    }
+
 
  
     .carousel {
@@ -141,7 +125,6 @@
 
 {% endblock %}
 </style>
-
 
 <script>
 {% block jquery %}
@@ -311,10 +294,9 @@ $(".item-qty").change(function(){
 <h2><b> SMART EDUCATIONAL MARKET PLACE. </b></h2> <hr>
 </div>
 </div><br> <br>
-
 <div class='row'>
-<div class="col-md-9">
-<h3><b> New curriculum books allowed by REB </b></h3>
+<div class="col-md-12">
+<h3 class="tit"><b> NEW CURRICULUM BOOKS  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -335,18 +317,6 @@ $(".item-qty").change(function(){
    </div>
 </div>
 </div>
-<div class="col-md-3 text-center">
-
-<!-- Please heart it if you like! -->
-
-<!-- Please heart it if you like! -->
-      <br><br><br>
-     <h3><b> GET OFFLINE APPLICATION </b></h3>
-      &nbsp; &nbsp;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTZzrKdmVs6DMpxAq3MuyBNznWFgjYKL5fQv92AhSY6Y_HwdP1mQ" alt="The card middle" class="img-responsive img-rounded" id="card-image" class="img-responsive" style="width:122px; margin-left: 70px;">  
-     <h2><b>S.E.M</b></h2>
-    <button class="btn btn-success"> Download </button>
-
-</div>
 </div>
 
 
@@ -354,7 +324,7 @@ $(".item-qty").change(function(){
 
 <div class='row'>
 <div class="col-md-12">
-<h3><b> Universities books allowed by REB </b></h3>
+<h3 class="tit"><b> UNIVERSITIES BOOKS  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -386,7 +356,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3><b> Secondary school books allowed by REB </b></h3>
+<h3 class="tit"><b> SECONDARY SCHOOL BOOKS  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -416,7 +386,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3><b>Primary books allowed by REB </b></h3>
+<h3 class="tit"><b>Primary books  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -446,7 +416,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3><b>Kindergarten books allowed by REB </b></h3>
+<h3 class="tit"><b>Kindergarten books  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -475,7 +445,7 @@ $(".item-qty").change(function(){
 
 
 <div class='row'>
-<h3><b>Univercities books allowed by REB </b></h3>
+<h3 class="tit"><b>Universities books  </b></h3>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -502,8 +472,8 @@ $(".item-qty").change(function(){
 </div>
 
 
-<div class='row'>
-<h3><b>Featured Books</b></h3>
+<div class='row' >
+<h3 class="tit"><b>Featured Books</b></h3>
 {% include "products/products.html" with object_list=products2 %}
 
 </div>
