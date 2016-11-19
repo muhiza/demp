@@ -4,32 +4,21 @@
 
 {% block head_title %}Welcome | {{ block.super }}{% endblock %}
 <style>
-
-
-
-
-
-{% block style %}
-
+{% block style %}ls
 .navbar-static-top {
 	margin-bottom: 3000px !important;
   height: 3000px;
 }
-
 .jumbotron {
 	{% if featured_image.make_image_background %} 
 	background-image: url("https://images2.alphacoders.com/261/thumb-1920-26102.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: -110px;
-
 	{% endif %}
 }
-
-
 /* GLOBAL STYLES */
 /* Padding below the footer and lighter body text */
-
 
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
@@ -56,11 +45,9 @@
       border: 0;
       z-index: 10;
     }
-
     .carousel .item {
       height: 350px;
-    }
-
+      }
       .carousel-caption {
         width: 65%;
         padding: 0 70px;
@@ -73,7 +60,6 @@
       .carousel-caption .btn {
         font-size: 18px;
       }
-
     .carousel-caption {
       background-color: transparent;
       position: static;
@@ -121,7 +107,6 @@
     /* RESPONSIVE CSS
     -------------------------------------------------- */
     }
-
 
 {% endblock %}
 </style>
@@ -187,25 +172,9 @@ $(".item-qty").change(function(){
 });
 
 {% endblock %}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-     
+</script>     
 {% block jumbotron %}
-
 	{% if featured_image %}
-
-
-
 
 		<div class="jumbotron" >
 		 <div class="container">
@@ -285,9 +254,7 @@ $(".item-qty").change(function(){
 
 {% endblock %}
 
-
-
-
+<body>
 {% block content %}
 <div class="row">
 <div class="col-md-12 text-center">

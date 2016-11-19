@@ -1,19 +1,25 @@
 {% extends "base.html" %}
-
-<script type="text/javascript"></script>>
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'products/style.css' %}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+</head>
+<script type="text/javascript"></script>
 <style type="text/css">
-
-
-
-body{
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css);
+body {
     overflow:hidden;
+    margin: -5000px;
 }
-
+.book_details {
+  background-color: #ff00f0;
+  background-image: url('https://images-na.ssl-images-amazon.com/images/I/51B0EAqtQDL._SX332_BO1,204,203,200_.jpg');
+}
 #flipbook{
     width:400px;
     height:300px;
 }
-
 #flipbook .page{
     width:400px;
     height:300px;
@@ -53,10 +59,8 @@ body{
     -moz-box-shadow:inset 0 0 5px #666;
     -o-box-shadow:inset 0 0 5px #666;
     -ms-box-shadow:inset 0 0 5px #666;
-    box-shadow:inset 0 0 5px #666;
-    
+    box-shadow:inset 0 0 5px #666;   
 }
-
 #flipbook .even{
     background:-webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
     background-image:-webkit-linear-gradient(left, #fff 95%, #dadada 100%);
@@ -70,13 +74,6 @@ body{
     -ms-box-shadow:inset 0 0 5px #666;
     box-shadow:inset 0 0 5px #666;
 }
-
-
-
-
-
-
-
   .modal.modal-fullscreen .modal-content {
     background: rgba(0, 0, 0, .5);
   }
@@ -87,7 +84,6 @@ body{
   .modal.modal-fullscreen .modal-footer {
     border-color: rgba(0, 0, 0, .5);
   }
-
   h1,h2,h3,h4,h5,h6{
   font-family: Latex, Georgia, serif;
   margin: 0;
@@ -105,10 +101,21 @@ h1.title{
   margin: 1rem 0 0.5rem 0.5rem;
 }
 
+#tabs {
+  font-weight: italic;
+}
+
+img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
 </style>
-
-
-
 
 <script>
 {% block jquery %}
@@ -118,19 +125,12 @@ $("#flipbook").turn({
     height: 300,
     autoCenter: true
 });
-
-
-
-
-
-
 $(function(){
     $('.rating-select .btn').on('mouseover', function(){
         $(this).removeClass('btn-default').addClass('btn-warning');
         $(this).prevAll().removeClass('btn-default').addClass('btn-warning');
         $(this).nextAll().removeClass('btn-warning').addClass('btn-default');
     });
-
     $('.rating-select').on('mouseleave', function(){
         active = $(this).parent().find('.selected');
         if(active.length) {
@@ -154,7 +154,6 @@ $(function(){
 
 function setPrice(){
 	var price = $(".variation_select option:selected").attr("data-price")
-
 	var sale_price = $(".variation_select option:selected").attr("data-sale-price")
 	if (sale_price != "" && sale_price != "None" && sale_price != null ) {
 	$("#price").html("<h3>" + sale_price + " <small class='og-price'>" + price  + "</small></h3>");
@@ -163,18 +162,12 @@ function setPrice(){
 	}
 }
 setPrice()
-
 $(".variation_select").change(function(){
 	setPrice()
 	// var img = $(".variation_select option:selected").attr("data-img")
 	// $("img").attr("src", img);
-
 })
-
-
-
 // ajax add to cart
-
 $("#submit-btn").click(function(event){
 	event.preventDefault();
 	var formData = $("#add-form").serialize();
@@ -193,46 +186,126 @@ $("#submit-btn").click(function(event){
 			$("#add-form").submit()
 		}
 	})
-
 	// $("#add-form").submit()
-
 })
 {% endblock %}
 </script>
 {% block content %}
-<br><br>
-<div class='row'>
-<div class='col-sm-4'>
+<br>
+    <!-- Nav tabs -->
+    <div class="car" id="tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="{% url 'find_library' %}" aria-controls="home" role="tab"><b>Books</b></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Science <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Engineering <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Graphics <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Internet of Things <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Audio Books </a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">HardCopy books </a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Partners <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+    </ul>
+    <!-- Tab panes 
+    <style type="text/css">
+      .nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 0px; position: absolute; width: 0%; left: 0px; bottom: -1px; transition: all 0ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 0px 0; }
+.tab-content{padding: 0px; height: 0px;}
+
+.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 0px; }
+body{ }
+    </style>
+
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane" id="profile">
+<!-- Content here 
+        <div role="tabpanel" class="tab-pane" id="settings">  
+<!-- Content also here  
+   -->
+        </div>
+    </div>
+    </div>
+
+<div class='row' id="book_details">
+<div class='col-sm-3'>
 {% if object.get_image_url %}
 <div>
 <a href='{{ product.get_absolute_url }}'><img id='img' style="height:400px; width: 300px; padding-top: 30px;" class='img-responsive' src='{{ product.get_image_url }}' /> </a> <br>
 </div>
-
-<div>
-<a href="{{ object.get_pdf_doc_url }}" target="_blank"><img id='img' class='img-responsive'
-
- src='{{ documents.pdf_doc.name }}' /> </a> <br>
-</div>
-
-
-
-{% endif %}
-
-{% if request.user.is_authenticated %}
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"><a href="{{ object.get_documents_url }}" src='{{ object.get_documents_url }}' target="_blank">Download </a></button>
-
-{% else %}
-
-<!--
-
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
-
-
--->
-
-{% endif %}
-  <!-- Modal -->
-
+<!-- Modal -->
 <!-- Button trigger modal -->
 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> 
   Read Sample
@@ -240,9 +313,168 @@ $("#submit-btn").click(function(event){
 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> 
   Voice read
 </button> <br><br>
-
 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
-<!-- Modal -->
+<!-- Modal --><br>
+<h3>Our App </h3>
+<img src="http://smartkidzclub.com/smartkidzclub/assets/device/android.png" class="img-responsive" alt="android app"></a>
+</div>
+<div class="col-md-6"><br>
+<h2 style="font-size: 36px; font-weight: 300px; line-height: 43px;transform: none;">{{ object.title|slice:":40" }}</h2>
+<p style="font-size: 15px; font-weight: normal; line-height: 29px; text-align: justify;
+    text-justify: inter-word; height:250px;">
+{{ object.description|slice:":900" }}
+</p> <hr>
+
+    <!-- Nav tabs -->
+    <div class="card">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publication Details</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Format</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Author</a></li>
+        <li role="presentation"><a href="#stats" aria-controls="settings" role="tab" data-toggle="tab">Statistics </a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Apps </a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <style type="text/css">
+      
+      .nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding: 30px; height: 300px;}
+
+.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 40px; font-weight: italic; }
+body{ }
+    </style>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+        <p><b>Publisher :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Imprint :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Publication Date :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
+
+        <p><b>Available In :</b> <br> 
+        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Kigali Public Library </span></p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+        <p> Author {{ user }} </p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+
+        <div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+
+        <div role="tabpanel" class="tab-pane" id="stats">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
+          <h3> Stats </h3>
+          <ol class="nav nav-pills">
+            <li class="active"><a href="#">(10k)Downloads</a></li>
+            <li><a href="#">(30k)Viewers</a></li>
+            <li><a href="#">(13k)Comments</a></li>
+            <li><a href="#">(50k)Likes</a></li>
+          </ol>
+          <hr>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">  
+        <div class="row">
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/apple.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/android.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/amazon.png" class="img-responsive" alt="android app"></a>
+          </div>
+        </div><br><br><br>
+        <div class="row">
+          <div class="col-md-12">
+          <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive">
+          </div>
+        </div>
+        </div>
+    </div>
+    </div><br><br>
+</div>
+<div class="col-md-3 text-left" style="padding-left: 50px;">
+<p><b><br><br>
+Share
+<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+<i class="fa fa-facebook-square fa-3x"></i></a>
+<a href="#">
+<i class="fa fa-twitter-square fa-3x"></i></a>
+<a href="#">
+<i class="fa fa-google-plus-square fa-3x"></i></a>
+<a href="#">
+<i class="fa fa-pinterest-square fa-3x"></i></a>
+</b></p>
+<hr/>
+<h3><b>Readers Reviews </b></h3>
+<div class="rating-select">
+    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
+    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
+    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
+    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
+    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
+</div> 
+<br>
+<form id='add-form' method='GET' action="{% url 'cart' %}">
+<p id='jquery-message' class='lead'>
+
+</p>
+
+
+  {% if object.variation_set.count > 1 %}
+  <h3 id='price'>{{ object.variation_set.first.price }}</h3>
+
+  <select name='item' class='form-control variation_select'>
+    {% for vari_obj in object.variation_set.all %}
+    <!-- <option data-img="http://www.spirit1059.com/pics/Feeds/Articles/2015611/118317/Beach.jpg" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option> -->
+    <option  data-sale-price="{{ vari_obj.sale_price }}" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option>
+    {% endfor %}
+    </select>
+  {% else %}
+    <input type="hidden" name='item' value='{{ object.variation_set.first.id }}' />
+      <h3 id='price'>{% if object.variation_set.first.sale_price %}
+      {{ object.variation_set.first.sale_price  }}
+      <small class='og-price'>{{ object.variation_set.first.price }}</small>
+      {% else %}
+      {{ object.variation_set.first.price }} frw
+      {% endif %}
+    </h3>
+  {% endif %}
+  <br/>
+  <input class='form-control' type='number' name='qty' value='1' />
+<br/>
+<input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-success' />
+</form>
+</div>
+<a href='{{ product.get_absolute_url }}'><img id='img' style="height:340px; width: 300px; padding-top: 30px; padding-left: 50px;" class='img-responsive text-right' src='{{ product.get_image_url }}' /> </a>
+</div>
+
+<div>
+<a href="{{ object.get_pdf_doc_url }}" target="_blank"><img id='img' class='img-responsive' src='{{ documents.pdf_doc.name }}' /> </a> <br>
+</div>
+{% endif %}
+
+
+{% if request.user.is_authenticated %}
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#"><a href="{{ object.get_documents_url }}" src='{{ object.get_documents_url }}' target="_blank">Download </a></button>
+{% else %}
+<!--
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 30px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #FFFFFF; color:#6D6E71; height:  40px; width:300px; border: 2px solid #6D6E71; padding: 2px 4px 4px 4px;  min-height: 50px;"> <a href="{% url 'auth_login' %}" src="{{ object.get_docfile_url }}">Download </a></button>
+-->
+{% endif %}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="mod" style="width:100%; 
 height:100%;">
   <div class="modal-dialog" style="width:100%; 
@@ -285,15 +517,6 @@ height:100%;">
   </div>
 </div>
 
-<h3><b>Readers Reviews </b></h3>
-<div class="rating-select">
-    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-    <div class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty"></span></div>
-</div> 
-
 <script type="text/javascript">
   $(function() {
     //single book
@@ -307,148 +530,51 @@ height:100%;">
 });
     
 </script>
-<br><br>
+
+                <div class="bs-calltoaction bs-calltoaction-info" >
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">Providing competence based education</h1>
+                            <div class="cta-desc">
+                                <p>Use our free version and explore with complimentary SMS! Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-info">Go for our products!</a>
+                        </div>
+                     </div>
+                </div>
+
+
 
 <!-- Centered Tabs -->
 
 
 <!-- Centered Pills -->
-<h3> Stats </h3>
-<ul class="nav nav-pills">
-  <li class="active"><a href="#">(10k) Downloads</a></li>
-  <li><a href="#">(30k) Viewers</a></li>
-  <li><a href="#">(13k) Comments</a></li>
-  <li><a href="#">(50k) Likes</a></li>
-</ul>
-<hr>
-<br>
-
-
-
-<h4><b>Related Books</b></h4> <hr>
-
+</div>
+<h2><b>Related Books</b></h2> <hr>
   <div class='row'>
   {% for product in related %}
-
-    <div class='col-xs-6'>
+    <div class='col-md-2'>
       {% include "products/product_thumbnail.html" with product=product price="True" %}
     </div>
-    {% cycle '' '</div><div class="row">' %}
+    {% cycle '' '' %}
   {% endfor %}
-
     </div>
 </div>
 
-<!-- Product Sidebar -->
+<!-- Product Sidebar 
 <div class='col-sm-7'>
 <h2 style="font-size: 36px; font-weight: 300px; line-height: 43px; transform: none;">{{ object.title }}</h2>
 <p style="font-size: 15px; font-weight: normal; line-height: 29px; text-align: justify;
     text-justify: inter-word;">
 {{ object.description }}
-</p> <hr>
-
-    <!-- Nav tabs --><div class="card">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Publication Details</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Format</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Author</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Apps </a></li>
-    </ul>
-
-    <!-- Tab panes -->
-    <style type="text/css">
-      
-      .nav-tabs { border-bottom: 2px solid #DDD; }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
-    .nav-tabs > li > a { border: none; color: #666; }
-        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
-        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
-    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
-.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
-.tab-pane { padding: 15px 0; }
-.tab-content{padding: 30px; height: 300px;}
-
-.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 40px; }
-body{ background-image: url();}
-    </style>
-
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
-        <p><b>Publisher :</b> <br> 
-        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
-
-        <p><b>Imprint :</b> <br> 
-        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
-
-        <p><b>Publication Date :</b> <br> 
-        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Muhiza Frank </span></p>
-
-        <p><b>Available In :</b> <br> 
-        &nbsp;&nbsp;&nbsp; <span style="font-color:#006595;"> Kigali Public Library </span></p>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
-        <p> Author {{ user }} </p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
-        <div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-        <div role="tabpanel" class="tab-pane" id="settings">  
-        <div class="row">
-          <div class="col-md-4">
-          <a href="#">
-          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/apple.png" class="img-responsive" alt="android app"></a>
-          </div>
-          <div class="col-md-4">
-          <a href="#">
-          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/android.png" class="img-responsive" alt="android app"></a>
-          </div>
-          <div class="col-md-4">
-          <a href="#">
-          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/amazon.png" class="img-responsive" alt="android app"></a>
-          </div>
-        </div><br><br><br>
-        <div class="row">
-          <div class="col-md-12">
-          <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive">
-          </div>
-        </div>
-        </div>
-    </div>
-    </div><br><br>
-
-
-<form id='add-form' method='GET' action="{% url 'cart' %}">
-<p id='jquery-message' class='lead'>
-
 </p>
+-->
 
 
-	{% if object.variation_set.count > 1 %}
-	<h3 id='price'>{{ object.variation_set.first.price }}</h3>
+ <hr>
 
-	<select name='item' class='form-control variation_select'>
-		{% for vari_obj in object.variation_set.all %}
-		<!-- <option data-img="http://www.spirit1059.com/pics/Feeds/Articles/2015611/118317/Beach.jpg" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option> -->
-		<option  data-sale-price="{{ vari_obj.sale_price }}" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option>
-		{% endfor %}
-		</select>
-
-	{% else %}
-		<input type="hidden" name='item' value='{{ object.variation_set.first.id }}' />
-			<h3 id='price'>{% if object.variation_set.first.sale_price %}
-			{{ object.variation_set.first.sale_price  }}
-			<small class='og-price'>{{ object.variation_set.first.price }}</small>
-			{% else %}
-			
-			{{ object.variation_set.first.price }} frw
-			{% endif %}
-		</h3>
-
-
-	{% endif %}
-	<br/>
-	<input class='form-control' type='number' name='qty' value='1' />
-<br/>
-<input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-success' />
-</form>
 <hr/>
 
 
@@ -466,47 +592,58 @@ body{ background-image: url();}
 
 
 
+<br>
+<div class="row">
+<div class="col-md-6">
+<h2><b>Ideas Sharing</b></h2> <hr>
+<div id="disqus_thread" style="width:600px;"></div>
+</div>
+<div class="col-md-6">
+<h2><b>Educational Related Projects</b></h2> <hr>
 
-<p><b>
-Share<br/>
-<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
-<i class="fa fa-facebook-square fa-3x"></i></a>
-
-<a href="#">
-<i class="fa fa-twitter-square fa-3x"></i></a>
-
-<a href="#">
-<i class="fa fa-google-plus-square fa-3x"></i></a>
-
-<a href="#">
-<i class="fa fa-pinterest-square fa-3x"></i></a>
-</b></p>
-<hr/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="disqus_thread"></div>
+                <div class="bs-calltoaction bs-calltoaction-info" >
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">E-learning</h1>
+                            <div class="cta-desc">
+                                <p>Use our free version and explore with complimentary SMS! Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-info">Read more</a>
+                        </div>
+                     </div>
+                </div>
+                <div class="bs-calltoaction bs-calltoaction-success" >
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">Boot-camps</h1>
+                            <div class="cta-desc">
+                                <p>Use our free version and explore with complimentary SMS! Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-info">Read more</a>
+                        </div>
+                     </div>
+                </div>
+                <div class="bs-calltoaction bs-calltoaction-primary" >
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">Ideas in Motion</h1>
+                            <div class="cta-desc">
+                                <p>Use our free version and explore with complimentary SMS! Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-info">Read more</a>
+                        </div>
+                     </div>
+                </div>
+</div>
+</div>
 <script>
+
 
 /**
  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -526,18 +663,10 @@ var disqus_config = function () {
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by .</a></noscript><br><br><br><br><br><br>
 
+<!--
 <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive" style="height:400px;">
+-->
 </div>
-
-
-
-
-        <div class="row">
-          <div class="col-md-12">
-          
-          </div>
-        </div>
-
 
 <!-- End Product Sidebar -->
 </div>

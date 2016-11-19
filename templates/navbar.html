@@ -1,22 +1,27 @@
-
-
 {% load staticfiles %}
    <!-- Static navbar -->
-
    <style type="text/css">
 
 .navbar {
     border-radius: 0;
     top: 10;
-    background: #FFFFFF;
+    background: #232F3E;
+    color: #CCCCCC;
+    margin-top: -10px;
 }
 
 .navbar-brand {
     font-family: 'Satisfy', cursive;
+    font-color: #404040;
+}
+
+#nh {
+  margin-left: -90px;
 }
 
 .navbar, li {
   font-weight: bold;
+  font-color: #404040;
 }
 
 
@@ -28,17 +33,10 @@ li:hover {
    position: fixed;
    top: 10;
    width: 100%;
-
+   color: #fff;
 }
-
-
-
-   </style>
-
-
+</style>
 <script type="text/javascript">
-  
-
 $(document).ready(function(){       
    var scroll_start = 0;
    var startchange = $('#startchange');
@@ -53,20 +51,35 @@ $(document).ready(function(){
    });
 });
 
-</script>
 
+
+    $(function(){
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            });
+    });
+    
+</script>
 
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" id="nh">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <b><strong><a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-book fa-navbar-book"></i> <b>S.E.M </b></a></strong></b>
+          <b style="font-color: #fff;"><strong><a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-book fa-navbar-book"></i> S.E.M </a></strong></b>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -98,7 +111,7 @@ $(document).ready(function(){
          
 
 
-          <li><a href="{% url 'home' %}">Libraries</a></li>
+          <li><a href="{% url 'find_library' %}">Find a library <span class="glyphicon glyphicon-map-marker"></span></a></li>
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'orders' %}">Orders</a></li> 
 
@@ -166,7 +179,7 @@ $(document).ready(function(){
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <br><br><br>
+    <br>
     
 
 
