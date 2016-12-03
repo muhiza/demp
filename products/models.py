@@ -33,6 +33,8 @@ class Product(models.Model):
 	categories = models.ManyToManyField('Category', blank=True)
 	default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
 
+
+
 	objects = ProductManager()
 
 	class Meta:

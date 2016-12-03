@@ -161,6 +161,12 @@ class CategoryListView(ListView):
 	template_name = "products/product_list.html"
 
 
+class CategoryListView_cards(ListView):
+	model = Category
+	queryset = Category.objects.all()
+	template_name = "products/product_list_cards.html"
+
+
 class CategoryDetailView(DetailView):
 	model = Category
 

@@ -47,7 +47,6 @@ body {
     box-shadow:inset 0 0 5px #666;
     font-weight:bold;
 }
-
 #flipbook .odd{
     background:-webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
     background-image:-webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
@@ -199,75 +198,76 @@ $("#submit-btn").click(function(event){
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Science <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href='{% url "categories_cards" %}'>Questions and Answers</a></li>
+            <li><a href="#">Basics</a></li>
+            <li><a href="#">Intermediate</a></li>
+            <li><a href="#">Advanced</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Practices</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Projects</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Engineering <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Basics</a></li>
+            <li><a href="#">Intermediate</a></li>
+            <li><a href="#">Adanced</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Proctices</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Projects</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Basics</a></li>
+            <li><a href="#">Intermediate</a></li>
+            <li><a href="#">Advanced</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Practices</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Projects</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Graphics <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Basics</a></li>
+            <li><a href="#">Intermediate</a></li>
+            <li><a href="#">Advanced</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Practices</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Projects</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Internet of Things <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Basics</a></li>
+            <li><a href="#">Intermediate</a></li>
+            <li><a href="#">Advanced</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Practices</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Projects</a></li>
           </ul>
         </li>
         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Audio Books </a></li>
         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">HardCopy books </a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Partners <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainings <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="http://www.threemountains.academy/" target="_blank">Three Mountains</a></li>
+            <li><a href="#">Farming</a></li>
+            <li><a href="#">Business</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Education</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Start-Ups</a></li>
           </ul>
         </li>
     </ul>
@@ -286,10 +286,7 @@ $("#submit-btn").click(function(event){
 .card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 0px; }
 body{ }
     </style>
-
-
     <div class="tab-content">
-
         <div role="tabpanel" class="tab-pane" id="profile">
 <!-- Content here 
         <div role="tabpanel" class="tab-pane" id="settings">  
@@ -333,6 +330,7 @@ body{ }
         <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Author</a></li>
         <li role="presentation"><a href="#stats" aria-controls="settings" role="tab" data-toggle="tab">Statistics </a></li>
         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Apps </a></li>
+        <li role="presentation"><a href="#libraries" aria-controls="settings" role="tab" data-toggle="tab">Libraries </a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -383,6 +381,27 @@ body{ }
           <hr>
         </div>
         <div role="tabpanel" class="tab-pane" id="settings">  
+        <div class="row">
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/apple.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/android.png" class="img-responsive" alt="android app"></a>
+          </div>
+          <div class="col-md-4">
+          <a href="#">
+          <img src="http://smartkidzclub.com/smartkidzclub/assets/device/amazon.png" class="img-responsive" alt="android app"></a>
+          </div>
+        </div><br><br><br>
+        <div class="row">
+          <div class="col-md-12">
+          <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive">
+          </div>
+        </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="libraries">  
         <div class="row">
           <div class="col-md-4">
           <a href="#">
@@ -516,21 +535,16 @@ height:100%;">
     </div>
   </div>
 </div>
-
 <script type="text/javascript">
   $(function() {
     //single book
     $('#mybook').booklet();
-
     //multiple books with ID's
     $('#mybook1, #mybook2').booklet();
-
     //multiple books with a class
     $('.mycustombooks').booklet();
 });
-    
 </script>
-
                 <div class="bs-calltoaction bs-calltoaction-info" >
                     <div class="row">
                         <div class="col-md-9 cta-contents">
@@ -544,12 +558,7 @@ height:100%;">
                         </div>
                      </div>
                 </div>
-
-
-
 <!-- Centered Tabs -->
-
-
 <!-- Centered Pills -->
 </div>
 <h2><b>Related Books</b></h2> <hr>
@@ -562,7 +571,6 @@ height:100%;">
   {% endfor %}
     </div>
 </div>
-
 <!-- Product Sidebar 
 <div class='col-sm-7'>
 <h2 style="font-size: 36px; font-weight: 300px; line-height: 43px; transform: none;">{{ object.title }}</h2>
@@ -571,27 +579,8 @@ height:100%;">
 {{ object.description }}
 </p>
 -->
-
-
  <hr>
-
 <hr/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br>
 <div class="row">
 <div class="col-md-6">
@@ -600,7 +589,6 @@ height:100%;">
 </div>
 <div class="col-md-6">
 <h2><b>Educational Related Projects</b></h2> <hr>
-
                 <div class="bs-calltoaction bs-calltoaction-info" >
                     <div class="row">
                         <div class="col-md-9 cta-contents">
@@ -643,8 +631,6 @@ height:100%;">
 </div>
 </div>
 <script>
-
-
 /**
  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
@@ -662,12 +648,10 @@ var disqus_config = function () {
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by .</a></noscript><br><br><br><br><br><br>
-
 <!--
 <img src="http://smartkidzclub.com/smartkidzclub/images/skc-webgraphicbg.png" class="img-responsive" style="height:400px;">
 -->
 </div>
-
 <!-- End Product Sidebar -->
 </div>
 {% endblock %}

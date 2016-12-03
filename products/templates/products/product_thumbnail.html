@@ -1,13 +1,23 @@
-
+<style type="text/css">
+	#price:hover {
+  			opacity: 0.75;
+			font-size: 5000px;
+	}
+</style>
 <div class="row">
 <div class="col-md-12">
-<h4><a href='{{ product.get_absolute_url }}'>{{ product.title }}</a></h4>
+<h4><a href='{{ product.get_absolute_url }}'>{{ product.title|slice:":30" }}</a></h4>
 	{% if product.get_image_url %}
 	<a href='{{ product.get_absolute_url }}'><img id='img' style="height:200px; width: 400px;" class='img-responsive' src='{{ product.get_image_url }}' /></a><br/>
 	{% endif %}
-
 	{% if price == "True" %}
-		{{ product.variation_set.first.get_html_price }} frw
+	<div id="price">
+		<button class="btn btn-primary text-center" data-toggle="modal" data-target="#myModal" style="font-size: 20px; font-weight: 600; line-height: 15px; text-transform: uppercase; text-align:center; word-spacing: 0px; background-color: #00bfff; color:#ffffff; height:  30px; width:150px; border: 2px solid #ffffff; padding: 2px 4px 4px 4px;  min-height: 30px; text-align:center;"> 
+		  {{ product.variation_set.first.get_html_price }} frw
+		</button>
 	{% endif %}
-</div>
-</div>
+	</div>
+</div> 
+</div><br><hr>
+
+
